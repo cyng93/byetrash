@@ -1,0 +1,37 @@
+<h1>Listing wastes</h1>
+
+<%= render 'form' %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Weight</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @wastes.each do |waste| %>
+    <tr>
+      <td><%= waste.name %></td>
+      <td><%= waste.description %></td>
+      <td><%= waste.weight%></td>
+      <td><%= link_to 'Show', waste_path(waste) %></td>
+      <td><%= link_to 'Edit', edit_waste_path(waste) %></td>
+      <!--
+       The method: :delete and data: { confirm: 'Are you sure?' } options are
+       used as HTML5 attributes so that when the link is clicked, Rails will
+       first show a confirm dialog to the user, and then submit the link with
+       method delete. This is done via the JavaScript file jquery_ujs which is
+       automatically included in your application's layout
+       (app/views/layouts/application.html.erb) when you generated the
+       application. Without this file, the confirmation dialog box won't appear
+      -->
+      <td><%= link_to 'Destroy', waste_path(waste),
+              method: :delete,
+              data: { comfirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

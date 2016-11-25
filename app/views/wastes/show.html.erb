@@ -1,0 +1,13 @@
+<h2>Waste</h2>
+<p>
+  <strong>Name:</strong>
+  <%= @waste.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @waste.description %>
+</p>
+
+<%= link_to 'Edit', edit_waste_path(@waste) %>
+<%= link_to 'Back', wastes_path %>

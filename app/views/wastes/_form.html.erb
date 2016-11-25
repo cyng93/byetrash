@@ -1,0 +1,31 @@
+<%= form_for @waste do |f| %>
+  <% if @waste.errors.any? %>
+    <div id="error_explanation">
+      <h2>Invalid form</h2>
+      <ul>
+        <% @waste.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'materialize-textarea' %>
+  </div>
+
+  <div class="row">
+    <%= f.label :description %><br>
+    <%= f.text_field :description, class: 'materialize-textarea' %>
+  </div>
+
+  <div class="row">
+    <%= f.label :weight %><br>
+    <%= f.number_field :weight, class: 'materialize-textarea' %>
+  </div>
+
+  <div class="row">
+    <%= f.submit class: 'btn waves-effect waves-light' %>
+  </div>
+<% end %>
