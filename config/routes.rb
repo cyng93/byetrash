@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :wastes
   resources :users do
-    resources :user_wastes
+    resources :thrown_wastes
   end
 
   get 'login' => 'sessions#new'

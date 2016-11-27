@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20161125152809) do
 
-  create_table "user_wastes", force: :cascade do |t|
+  create_table "thrown_wastes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "waste_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_wastes_on_user_id"
-    t.index ["waste_id"], name: "index_user_wastes_on_waste_id"
+    t.index ["user_id"], name: "index_thrown_wastes_on_user_id"
+    t.index ["waste_id"], name: "index_thrown_wastes_on_waste_id"
   end
 
   create_table "users", force: :cascade do |t|

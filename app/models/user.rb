@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :user_wastes, dependent: :destroy
+  has_many :thrown_wastes, dependent: :destroy
 
   validates_uniqueness_of :email
   validates_uniqueness_of :username
