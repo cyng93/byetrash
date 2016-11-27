@@ -1,0 +1,28 @@
+<h1>ThrownWaste#index</h1>
+
+<table>
+  <th>User</th>
+  <th>Waste</th>
+  <th>Created at</th>
+
+  <% @user.thrown_wastes.all.each do |tw| %>
+  <tr>
+    <td><%= User.find(tw.user_id).username %></td>
+    <td><%= Waste.find(tw.waste_id).name %></td>
+    <td>
+      <%= tw.created_at.in_time_zone('Taipei').strftime("%Y/%m/%d - %R") %>
+    </td>
+    <% if @user == current_user %>
+    <td><%= link_to 'x', [tw.user, tw],
+                         method: :delete,
+                         data: { comfirm: 'Are you sure?' } %>
+    </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+
+<% if @user == current_user %>
+  <%= render 'form' %>
+<% end %>
+<%= link_to 'Back', root_path %>

@@ -10,4 +10,8 @@ class User < ApplicationRecord
                                  on: :create
 
   has_secure_password
+
+  def update_score(new_score)
+    self.update(score: new_score)
+  end
 end

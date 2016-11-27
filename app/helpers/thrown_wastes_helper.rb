@@ -1,0 +1,2 @@
+module ThrownWastesHelper
+end

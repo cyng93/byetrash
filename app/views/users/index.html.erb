@@ -1,6 +1,4 @@
-<h1>Listing users</h1>
-
-<%= render 'form' %>
+<h1>User#index</h1>
 
 <table>
   <thead>
@@ -19,7 +17,7 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= user.score %></td>
-      <td><%= user.username %></td>
+      <td><%= link_to user.username, user_thrown_wastes_path(user) %></td>
       <% if is_admin %>
       <td><%= user.email %></td>
       <td><%= user.is_admin %></td>
