@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      @params = params
       session[:user_id] = @user.id
       redirect_to '/'
     else
@@ -36,9 +35,15 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    need_logout = true  if @user == current_user  # need logout if user is
+                                                  #   destroying itself
     @user.destroy
+    if need_logout
+      redirect_to logout_path
+    else
+      redirect_to users_path
+    end
 
-    redirect_to users_path
   end
 
 private
