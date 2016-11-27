@@ -1,0 +1,44 @@
+<h1>Listing users</h1>
+
+<%= render 'form' %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Score</th>
+    <th>Username</th>
+    <% if is_admin %>
+    <th>Email</th>
+    <th>Admin</th>
+    <th>Action</th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.score %></td>
+      <td><%= user.username %></td>
+      <% if is_admin %>
+      <td><%= user.email %></td>
+      <td><%= user.is_admin %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <!--
+       The method: :delete and data: { confirm: 'Are you sure?' } options are
+       used as HTML5 attributes so that when the link is clicked, Rails will
+       first show a confirm dialog to the user, and then submit the link with
+       method delete. This is done via the JavaScript file jquery_ujs which is
+       automatically included in your application's layout
+       (app/views/layouts/application.html.erb) when you generated the
+       application. Without this file, the confirmation dialog box won't appear
+      -->
+      <td><%= link_to 'Destroy', user_path(user),
+              method: :delete,
+              data: { comfirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20161125152809) do
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
-    t.integer  "score"
+    t.integer  "score",           default: 0
     t.boolean  "is_admin",        default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false

@@ -1,0 +1,33 @@
+<h1>Edit User</h1>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>Invalid form</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <%= f.label :username %><br>
+    <%= f.text_field :username, class: 'materialize-textarea' %>
+  </div>
+
+  <div class="row">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class: 'materialize-textarea' %>
+  </div>
+
+  <div class="row">
+    <%= f.label :is_admin %><br>
+    <%= f.check_box :is_admin %>
+  </div>
+
+  <div class="row">
+    <%= f.submit class: 'btn waves-effect waves-light' %>
+  </div>
+<% end %>
+
