@@ -6,10 +6,47 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- materialize icon #begin -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- materialize icon #end -->
   </head>
 
   <body>
     <!-- Navbar #begin -->
+    <nav>
+      <div class="nav-wrapper">
+        <%= link_to 'Trash Terminators!', root_path, class: 'brand-logo' %>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <% if current_user %>
+            <li><a>Hi, <%= current_user.username %>!</a></li>
+            <li><%= link_to 'Dashboard',
+                            user_thrown_wastes_path(current_user.id) %></li>
+            <li><%= link_to 'Trashes', wastes_path %></li>
+            <li><%= link_to 'Logout', '/logout' %></li>
+          <% else %>
+            <li><%= link_to 'Login', '/login' %></li>
+            <li><%= link_to 'Signup', '/signup' %></li>
+            <li><%= link_to 'About us',
+                            'https://www.facebook.com/groups/101002767039448/' %></li>
+          <% end %>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <% if current_user %>
+            <li><a>Hi, <%= current_user.username %>!</a></li>
+            <li><%= link_to 'Dashboard',
+                            user_thrown_wastes_path(current_user.id) %></li>
+            <li><%= link_to 'Trashes', wastes_path %></li>
+            <li><%= link_to 'Logout', '/logout' %></li>
+          <% else %>
+            <li><%= link_to 'Login', '/login' %></li>
+            <li><%= link_to 'Signup', '/signup' %></li>
+            <li><%= link_to 'About us',
+                            'https://www.facebook.com/groups/101002767039448/' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
     <!-- Navbar #end -->
 
     <!-- Users #begin -->
@@ -18,7 +55,6 @@
     <% else %>
       <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
     <% end %>
-    <!-- Users #end -->
 
     <%= yield %>
 
@@ -28,6 +64,9 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script>
+      $(".button-collapse").sideNav();
+    </script>
     <!-- Materialize #end -->
   </body>
 </html>
