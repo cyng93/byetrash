@@ -1,0 +1,17 @@
+<div class="carousel" id="new_thrownwaste">
+  <% Waste.all.each do |waste| %>
+    <%= form_for( [@user, @user.thrown_wastes.build],
+                  remote: true,
+                  html: { id: "new_thrownwaste#{waste.id}" }
+                 ) do |f| %>
+      <%= f.hidden_field(:waste_id, value: waste.id) %>
+    <% end %>
+    <%= "<a class=\"carousel-item\" href='#' onclick=\"$('#new_thrownwaste#{waste.id}').submit()\">#{image_tag(waste.image_name.to_s)}</a>".html_safe %>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+</script>
