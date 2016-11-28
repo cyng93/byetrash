@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20161125152809) do
   create_table "wastes", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.string   "image_name"
     t.integer  "weight"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
