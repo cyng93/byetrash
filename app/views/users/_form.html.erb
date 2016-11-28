@@ -1,42 +1,60 @@
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2>Invalid form</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<%= form_for(@user, html: {class: 'col s12'}) do |f| %>
+  <div class="row">
+    <div class="input-field col s12">
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2>Invalid form</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     </div>
-  <% end %>
-
-  <div class="row">
-    <%= f.label :username %><br>
-    <%= f.text_field :username, class: 'materialize-textarea' %>
   </div>
 
   <div class="row">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: 'materialize-textarea' %>
+    <div class="input-field col s12">
+      <%= f.label :username %><br>
+      <%= f.text_field :username, class: 'materialize-textarea' %>
+    </div>
   </div>
 
   <div class="row">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, class: 'materialize-textarea' %>
+    <div class="input-field col s12">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, class: 'materialize-textarea' %>
+    </div>
   </div>
 
   <div class="row">
+    <div class="input-field col s12">
+      <%= f.label :password %><br>
+      <%= f.password_field :password, class: 'materialize-textarea' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation,
                          class: 'materialize-textarea' %>
+    </div>
   </div>
 
   <div class="row">
-    <%= f.label :is_admin %><br>
-    <%= f.check_box :is_admin %>
+    <div class="input-field col s12">
+      <p>
+        <%= f.check_box :is_admin, class: 'filled-in', id: 'filled-in-box' %>
+        <%= f.label :is_admin, for: 'filled-in-box' %>
+      </p>
+    </div>
   </div>
 
   <div class="row">
-    <%= f.submit class: 'btn waves-effect waves-light' %>
+    <div class="input-field col s12">
+      <%= f.submit class: 'btn waves-effect waves-light' %>
+    </div>
   </div>
 <% end %>

@@ -1,27 +1,44 @@
-<%= form_for([@user, @user.thrown_wastes.build]) do |f| %>
+<%= form_for([@user, @user.thrown_wastes.build],
+             html: {class: 'col s12'}) do |f| %>
 
-  <% if @thrown_waste.errors.any? %>
-    <div id="error_explanation">
-      <h2>Fail to create ThrownWaste!</h2>
-      <ul>
-        <% @thrown_waste.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+  <div class="row">
+    <div class="input-field col s12">
+    <% if @thrown_waste.errors.any? %>
+      <div id="error_explanation">
+        <h2>Fail to create ThrownWaste!</h2>
+        <ul>
+          <% @thrown_waste.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     </div>
-  <% end %>
+  </div>
 
   <%
     all_wastes = {}
-    all_wastes['Choose waste--'] = ''
+    all_wastes['--Choose waste--'] = ''
     Waste.all.each{|w| all_wastes[w.name] = w.id}
   %>
-  <%= f.label 'choose waste', 'Choose waste type:' %><br>
-  <%= f.select :waste_id, options_for_select(all_wastes, '--Choose waste--'),
-                          class: '' %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.label 'choose waste', 'Choose waste type:' %><br>
+      <%= f.select :waste_id, options_for_select(all_wastes,
+                                                 '--Choose waste--') %>
+    </div>
+  </div>
 
   <div class="row">
-    <%= f.submit class: 'btn waves-effect waves-light' %>
+    <div class="input-field col s12">
+      <%= f.submit class: 'btn waves-effect waves-light' %>
+    </div>
   </div>
 
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>

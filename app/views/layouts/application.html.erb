@@ -9,15 +9,25 @@
   </head>
 
   <body>
-    <!-- Users -->
+    <!-- Navbar #begin -->
+    <!-- Navbar #end -->
+
+    <!-- Users #begin -->
     <% if current_user %>
       Signed in as <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
     <% else %>
       <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
     <% end %>
+    <!-- Users #end -->
 
     <%= yield %>
 
-    <!-- Materialize: put js under here -->
+    <!-- Materialize: put js under here #begin -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <!-- Materialize #end -->
   </body>
 </html>
