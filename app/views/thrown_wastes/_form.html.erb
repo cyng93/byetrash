@@ -1,4 +1,5 @@
 <%= form_for([@user, @user.thrown_wastes.build],
+             remote: true,
              html: {class: 'col s12'}) do |f| %>
 
   <div class="row">

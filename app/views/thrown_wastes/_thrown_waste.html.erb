@@ -1,0 +1,13 @@
+<li id="thrownwaste_<%= thrown_waste.id %>">
+  <%= link_to thrown_waste.user.username, thrown_waste.user %>
+  threw <%= link_to thrown_waste.waste.name, thrown_waste.waste %>
+  <span class="date">
+    <%= time_ago_in_words(thrown_waste.created_at) %> ago
+  </span>
+  <% if current_user && thrown_waste.user == current_user %>
+    <%= link_to '✗', [thrown_waste.user, thrown_waste],
+                     remote: true,
+                     method: :delete,
+                     data: { comfirm: 'Are you sure?' } %>
+  <% end %>
+</li>
