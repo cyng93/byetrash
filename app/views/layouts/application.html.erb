@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Byewaste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Rhinow</title>
+    <%= favicon_link_tag 'rhinow.ico' %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,49 +17,59 @@
     <!-- Navbar #begin -->
     <nav>
       <div class="nav-wrapper">
-        <%= link_to 'Trash Terminators!', root_path, class: 'brand-logo' %>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <%= link_to 'Rhinow', root_path, class: 'brand-logo col s6 offst-s1' %>
         <ul class="right hide-on-med-and-down">
           <% if current_user %>
             <li><a>Hi, <%= current_user.username %>!</a></li>
+            <li class="divider"></li>
             <li><%= link_to 'Dashboard',
+                            new_user_thrown_waste_path(current_user.id) %></li>
+            <li><%= link_to 'My Profile',
+                            user_path(current_user.id) %></li>
+            <li><%= link_to 'Conclusion',
                             user_thrown_wastes_path(current_user.id) %></li>
-            <li><%= link_to 'Trashes', wastes_path %></li>
+            <% if current_user.is_admin %>
+              <li><%= link_to 'Trashes Management', wastes_path %></li>
+              <li><%= link_to 'User Ranking',
+                              users_path %></li>
+            <% end %>
             <li><%= link_to 'Logout', '/logout' %></li>
           <% else %>
             <li><%= link_to 'Login', '/login' %></li>
             <li><%= link_to 'Signup', '/signup' %></li>
             <li><%= link_to 'About us',
-                            'https://www.facebook.com/groups/101002767039448/' %></li>
+                            'https://www.facebook.com/rhinow.rightnow/' %></li>
           <% end %>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <% if current_user %>
             <li><a>Hi, <%= current_user.username %>!</a></li>
+            <li class="divider"></li>
             <li><%= link_to 'Dashboard',
+                            new_user_thrown_waste_path(current_user.id) %></li>
+            <li><%= link_to 'My Profile',
+                            user_path(current_user.id) %></li>
+            <li><%= link_to 'Conclusion',
                             user_thrown_wastes_path(current_user.id) %></li>
-            <li><%= link_to 'Trashes', wastes_path %></li>
+            <% if current_user.is_admin %>
+              <li><%= link_to 'Trashes Management', wastes_path %></li>
+              <li><%= link_to 'User Ranking',
+                              users_path %></li>
+            <% end %>
             <li><%= link_to 'Logout', '/logout' %></li>
           <% else %>
             <li><%= link_to 'Login', '/login' %></li>
             <li><%= link_to 'Signup', '/signup' %></li>
             <li><%= link_to 'About us',
-                            'https://www.facebook.com/groups/101002767039448/' %></li>
+                            'https://www.facebook.com/rhinow.rightnow/' %></li>
           <% end %>
         </ul>
       </div>
     </nav>
     <!-- Navbar #end -->
 
-    <!-- Users #begin -->
-    <% if current_user %>
-      Signed in as <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
-    <% else %>
-      <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-    <% end %>
-
-    <%= yield %>
-
+      <%= yield %>
     <!-- Materialize: put js under here #begin -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -66,6 +78,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script>
       $(".button-collapse").sideNav();
+      $('.carousel.carousel-slider').carousel({full_width: true});
+      $('ul.tabs').tabs('select_tab', 'tab_id');
+      $('.modal').modal();
     </script>
     <!-- Materialize #end -->
   </body>

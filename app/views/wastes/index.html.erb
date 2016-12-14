@@ -1,3 +1,6 @@
+<div class="container">
+<div class="container col s3"></div>
+<div class="container col s9">
 <h1>Listing wastes</h1>
 
 <%= render 'form' %>
@@ -7,6 +10,7 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Category</th>
     <th>Weight</th>
   </tr>
   </thead>
@@ -16,7 +20,8 @@
     <tr>
       <td><%= waste.name %></td>
       <td><%= waste.description %></td>
-      <td><%= waste.weight%></td>
+      <td><%= waste.category %></td>
+      <td><%= waste.weight %></td>
       <td><%= link_to 'Show', waste_path(waste) %></td>
       <td><%= link_to 'Edit', edit_waste_path(waste) %></td>
       <!--
@@ -35,3 +40,5 @@
   <% end %>
   </tbody>
 </table>
+</div>
+</div>

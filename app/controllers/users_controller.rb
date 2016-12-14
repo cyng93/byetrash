@@ -1,4 +1,17 @@
 class UsersController < ApplicationController
+
+  def show
+    @row_count = {}
+    @last_col_count = {}
+    @trash_per_day = (current_user.score_week1+current_user.score_week2)/day_passed/50.0
+    @row_count['day'] = (@trash_per_day/2).round
+    @row_count['month'] = ((@trash_per_day*30).round/3).round
+    @row_count['year'] = ((@trash_per_day*365).round/6).round
+    @last_col_count['day'] = (@trash_per_day%2).round
+    @last_col_count['month'] = ((@trash_per_day*30).round%3).round
+    @last_col_count['year'] = ((@trash_per_day*365).round%6).round
+  end
+
   def index
     @users = User.all
     @user = User.new

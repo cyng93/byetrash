@@ -1,0 +1,33 @@
+<% if @category.nil? %>
+  <div class="section">
+    <div class="row">
+      <div class="col s6 center">
+        <%= link_to '吃', user_thrown_wastes_new_eat_path,
+                          class: 'btn-large' %>
+      </div>
+      <div class="col s6 center">
+        <%= link_to '喝', user_thrown_wastes_new_drink_path,
+                          class: 'btn-large'%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 center">
+        <%= link_to '包裝垃圾', user_thrown_wastes_new_wrapping_path,
+                                class: 'btn-large' %>
+      </div>
+      <div class="col s6 center">
+        <%= link_to '紙張', user_thrown_wastes_new_paper_path,
+                            class: 'btn-large' %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <!-- TODO: wrap it using icon -->
+  <h6 class="center">
+  <%= link_to new_user_thrown_waste_path(@user), class: 'btn' do %>
+    <i class="material-icons left">replay</i>Back
+  <% end %>
+  </h6>
+  <%= render 'thrown_wastes/new/by_category' %>
+<% end %>
+</div>

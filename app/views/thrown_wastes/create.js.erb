@@ -1,1 +1,5 @@
+$('#thrownwastes li:last-child').remove()
 $('#thrownwastes').prepend('<%= j render(@thrown_waste) %>')
+
+var $toastContent = $('<span>You threw a <%=@thrown_waste.waste.name%> :\(</span>');
+Materialize.toast($toastContent, 4000); // 4000 is the duration of the toast

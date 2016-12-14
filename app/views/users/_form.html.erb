@@ -23,13 +23,6 @@
 
   <div class="row">
     <div class="input-field col s12">
-      <%= f.label :email %><br>
-      <%= f.text_field :email, class: 'materialize-textarea' %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12">
       <%= f.label :password %><br>
       <%= f.password_field :password, class: 'materialize-textarea' %>
     </div>
@@ -45,16 +38,7 @@
 
   <div class="row">
     <div class="input-field col s12">
-      <p>
-        <%= f.check_box :is_admin, class: 'filled-in', id: 'filled-in-box' %>
-        <%= f.label :is_admin, for: 'filled-in-box' %>
-      </p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12">
-      <%= f.submit class: 'btn waves-effect waves-light' %>
+      <%= f.submit class: 'btn-large waves-effect waves-light' %>
     </div>
   </div>
 <% end %>

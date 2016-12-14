@@ -1,0 +1,49 @@
+<div class="container row">
+  <div class="container col s3"></div>
+  <div class="container col s9">
+    <div class="section">
+    <% Waste.where(category: 'wrapping').each do |waste| %>
+      <%= form_for( [@user, @user.thrown_wastes.build],
+                    remote: true,
+                    html: { id: "new_thrownwaste#{waste.id}" }
+                   ) do |f| %>
+        <%= f.hidden_field(:waste_id, value: waste.id) %>
+      <% end %>
+
+      <div class="col s12 m7">
+        <div class="card horizontal">
+          <div class="card-image">
+            <%= image_tag(waste.image_name.to_s) %>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5 class="header"><%= waste.name %></p>
+            </div>
+            <div class="card-content">
+              <%= "<a href='#modal#{waste.id}'>See more...</a>".html_safe %>
+            </div>
+            <div class="card-action">
+              <%= "<a onclick=\"$('#new_thrownwaste#{waste.id}').submit()\">丟垃圾</a>".html_safe %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- waste popout description -->
+      <%= "<div id='modal#{waste.id}' class='modal'>".html_safe %>
+        <div class="modal-content">
+          <h5 class="center"><%= waste.name %></h5>
+          <p><%= waste.description %></p>
+        </div>
+      </div>
+    <% end %>
+    </div>  <!-- /section -->
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+</script>

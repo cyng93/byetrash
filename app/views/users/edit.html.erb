@@ -1,33 +1,54 @@
-<h1>Edit User</h1>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2>Invalid form</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<div class="container">
+  <h1>Edit User</h1>
+  <%= form_for @user do |f| %>
+    <div class="row">
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2>Invalid form</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row">
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :username %><br>
+        <%= f.text_field :username, class: 'materialize-textarea' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :score_week1 %><br>
+        <%= f.number_field :score_week1, class: 'materialize-textarea' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :score_week2 %><br>
+        <%= f.number_field :score_week2, class: 'materialize-textarea' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <p>
+          <%= f.check_box :is_admin, class: 'filled-in', id: 'filled-in-box' %>
+          <%= f.label :is_admin, for: 'filled-in-box' %>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.submit class: 'btn waves-effect waves-light' %>
+      </div>
     </div>
   <% end %>
-
-  <div class="row">
-    <%= f.label :username %><br>
-    <%= f.text_field :username, class: 'materialize-textarea' %>
-  </div>
-
-  <div class="row">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: 'materialize-textarea' %>
-  </div>
-
-  <div class="row">
-    <%= f.label :is_admin %><br>
-    <%= f.check_box :is_admin %>
-  </div>
-
-  <div class="row">
-    <%= f.submit class: 'btn waves-effect waves-light' %>
-  </div>
-<% end %>
-
+</div>

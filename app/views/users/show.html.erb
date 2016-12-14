@@ -1,0 +1,64 @@
+<div class="section">
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#day">1 Day</a></li>
+        <li class="tab col s3"><a href="#month">30-Day</a></li>
+        <li class="tab col s3"><a href="#year">365-Day</a></li>
+      </ul>
+    </div>
+    <div id="day" class="col s12">
+      <h4 class="center"> You create <%= @trash_per_day.round(2) %> bag of garbage every single day</h4>
+      <% @row_count['day'].times do %>
+        <div class="row">
+          <% 2.times do %>
+            <%= image_tag 'Trash.png', class: 'col s6'%>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="row">
+        <% @last_col_count['day'].times do %>
+          <%= image_tag 'Trash.png', class: 'col s6'%>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="month" class="col s12">
+      <h4 class="center"> Equivalent to <%= (@trash_per_day*30).round(2) %> bags of garbage every month</h4>
+      <% @row_count['month'].times do %>
+        <div class="row">
+          <% 3.times do %>
+            <%= image_tag 'Trash.png', class: 'col s4'%>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="row">
+        <% @last_col_count['month'].times do %>
+          <%= image_tag 'Trash.png', class: 'col s4'%>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="year" class="col s12">
+      <h4 class="center"> Which means <%= (@trash_per_day*365).round(2) %> bags of garbage each year</h4>
+      <% @row_count['year'].times do %>
+        <div class="row">
+          <% 6.times do %>
+            <%= image_tag 'Trash.png', class: 'col s2'%>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="row">
+        <% @last_col_count['year'].times do %>
+          <%= image_tag 'Trash.png', class: 'col s2'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+//  $(document).ready(function(){
+//    $('ul.tabs').tabs('select_tab', 'tab_id');
+//  });
+</script>

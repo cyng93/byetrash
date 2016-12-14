@@ -6,7 +6,7 @@
                  ) do |f| %>
       <%= f.hidden_field(:waste_id, value: waste.id) %>
     <% end %>
-    <%= "<a class=\"carousel-item\" href='#' onclick=\"$('#new_thrownwaste#{waste.id}').submit()\">#{image_tag(waste.image_name.to_s)}</a>".html_safe %>
+    <%= "<a class=\"carousel-item\" href='#' onclick=\"$('#new_thrownwaste#{waste.id}').submit()\">#{image_tag(waste.image_name.to_s)}<div class='center'>#{waste.name}</div><div class='center'>#{waste.description}</div></a>".html_safe %>
   <% end %>
 </div>
 
