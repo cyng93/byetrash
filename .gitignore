@@ -26,5 +26,5 @@
 # Ignore uploaded file
 /public/uploads
 
-# Ignore gemfile.lock
-Gemfile.lock
+# To dockerized
+.env
