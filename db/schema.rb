@@ -10,25 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125152809) do
+ActiveRecord::Schema.define(version: 20161212023415) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "thrown_wastes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "waste_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_thrown_wastes_on_user_id"
-    t.index ["waste_id"], name: "index_thrown_wastes_on_waste_id"
+    t.index ["user_id"], name: "index_thrown_wastes_on_user_id", using: :btree
+    t.index ["waste_id"], name: "index_thrown_wastes_on_waste_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.string   "email"
     t.string   "password_digest"
-    t.integer  "score",           default: 0
     t.boolean  "is_admin",        default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "score_week1",     default: 0
+    t.integer  "score_week2",     default: 0
   end
 
   create_table "wastes", force: :cascade do |t|
@@ -36,8 +39,11 @@ ActiveRecord::Schema.define(version: 20161125152809) do
     t.text     "description"
     t.string   "image_name"
     t.integer  "weight"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "category",    default: ""
   end
 
+  add_foreign_key "thrown_wastes", "users"
+  add_foreign_key "thrown_wastes", "wastes"
 end
