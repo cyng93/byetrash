@@ -1,5 +1,10 @@
 class SessionsController < ApplicationController
   def new
+    if current_user
+      flash[:message] = 'Welcome back, ' + current_user.username + '!'
+      redirect_to root_path
+    end
+    @user = User.new
   end
 
   def create
@@ -11,6 +16,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       cookies.encrypted[:user_id] = { value: @user.id,
                                       expires: 1.year.from_now }
+      flash[:message] = 'Welcome back, ' + @user.username + ' :)'
       redirect_to '/'
     else
       # If user's login doesn't work, send them back to the login form.

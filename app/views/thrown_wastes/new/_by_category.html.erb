@@ -33,7 +33,7 @@
           <%= "<a href='#modal#{waste.id}'>See more...</a>".html_safe %>
         </div>
         <div class="card-action">
-          <%= "<a href='#' onclick=\"$('#new_thrownwaste#{waste.id}').submit()\">丟垃圾</a>".html_safe %>
+          <%= "<a onclick=\"$('#new_thrownwaste#{waste.id}').submit()\">丟垃圾</a>".html_safe %>
         </div>
       </div>
     </div>
@@ -48,12 +48,10 @@
   </div>
 <% end %>
 </div>  <!-- /section -->
-</div>
-</div>
 
 <script>
-//  $(document).ready(function(){
-//    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-//    $('.modal').modal();
-//  });
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
 </script>
