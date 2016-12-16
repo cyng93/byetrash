@@ -1,5 +1,4 @@
 class ThrownWastesController < ApplicationController
-  before_action :require_login
 
   def index
     @user = User.find(params[:user_id])
@@ -95,12 +94,5 @@ private
     params.require(:thrown_waste).permit(:user_id,
                                          :waste_id
                                          )
-  end
-
-  def require_login
-    if !current_user
-      flash[:message] = 'Login to continue...'
-      redirect_to login_path
-    end
   end
 end

@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
 
   def show
+    @user = User.find(params[:id])
     @row_count = {}
     @last_col_count = {}
-    @trash_per_day = (current_user.score_week1+current_user.score_week2)/day_passed/50.0
+    @trash_per_day = (@user.score_week1 + @user.score_week2)/day_passed/50.0
     @row_count['day'] = (@trash_per_day/2).round
     @row_count['month'] = ((@trash_per_day*30).round/3).round
     @row_count['year'] = ((@trash_per_day*365).round/6).round
@@ -29,7 +31,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      @user.update!(is_admin: true) if @user.id == 1
       session[:user_id] = @user.id
+      cookies.encrypted[:user_id] = { value: @user.id,
+                                      expires: 1.year.from_now }
       redirect_to '/'
     else
       render 'new'
@@ -43,7 +48,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(user_params)
+    if @user.update(update_user_params)
       redirect_to users_path
     else
       render 'edit'
@@ -66,10 +71,16 @@ class UsersController < ApplicationController
 private
   def user_params
     params.require(:user).permit(:username,
-                                 :email,
                                  :password,
                                  :password_confirmation,
-                                 :is_admin
+                                 )
+  end
+
+  def update_user_params
+    params.require(:user).permit(:username,
+                                 :is_admin,
+                                 :score_week1,
+                                 :score_week2
                                  )
   end
 end

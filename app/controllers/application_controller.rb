@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :require_login
 
   def day_passed
     start_date = "2016-12-14 00:00:00 +0800"
@@ -28,8 +29,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :is_admin
 
-  def authorize
-    flash[:message] = "Please login to continue..."
-    redirect_to '/login' unless current_user
+  def require_login
+    if !current_user
+      flash[:message] = 'Login to continue...'
+      redirect_to login_path
+    end
   end
 end
