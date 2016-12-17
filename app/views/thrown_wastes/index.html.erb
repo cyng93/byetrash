@@ -1,26 +1,42 @@
+<h3 class="center" >垃圾 History</h3>
+
+<div class="divider"></div>
 <div class="section">
-  <h4 class="row center">經歷了兩個星期...</h4>
-</div>
-<div class="carousel carousel-slider center" data-indicators="true">
-  <div class="carousel-item red white-text" href="#one!">
-    <h2>Week 1</h2>
-    <p class="white-text">這，是你原本一星期製造的垃圾!</p>
-  </div>
-  <div class="carousel-item amber white-text" href="#two!">
-    <h2>Week 2</h2>
-    <p class="white-text">而這，是你第二個星期製造的垃圾！</p>
-  </div>
-  <div class="carousel-item green white-text" href="#three!">
-    <h2>Third Panel</h2>
-    <p class="white-text">「哇！你減少了x%的垃圾欸！是不是比想像中的簡單呢？？
-  首先感謝您參與我們這個計畫！我們很高興您成功的為地球盡一分力！
-  環保是一種很棒的生活態度，這次的活動只是個開始，當然我們生活中不只是這些垃圾，還有許多如菜單、牙刷、牙膏等生活用品都還未計入。
-  但這次的體驗就是想要帶給您垃圾減量觀念，我們相信小小的付出會帶來很大的改變，現在就讓環保成為我們的生活態度，Rhinow！」</p>
-  </div>
+<% Waste.all.each do |waste| %>
+  <% count = @user.thrown_wastes.where(waste_id: waste.id).count() %>
+  <% if count != 0 %>
+
+    <div class="col s12 m7">
+      <div class="card horizontal">
+        <div class="card-image">
+          <%= image_tag(waste.image_name.to_s) %>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <h2 class="header"><%= count %></h2>
+          </div>
+          <div class="card-content">
+            <%= "<a href='#modal#{waste.id}'>See more...</a>".html_safe %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- waste popout description -->
+    <%= "<div id='modal#{waste.id}' class='modal'>".html_safe %>
+      <div class="modal-content">
+        <h5 class="center"><%= waste.name %></h5>
+        <p><%= waste.description %></p>
+      </div>
+    </div>
+
+  <% end #if %>
+<% end #do %>
 </div>
 
 <script>
   $(document).ready(function(){
-    $('.carousel.carousel-slider').carousel({full_width: true});
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
   });
 </script>

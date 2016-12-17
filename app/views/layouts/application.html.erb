@@ -25,10 +25,11 @@
             <li class="divider"></li>
             <li><%= link_to '垃圾製造機',
                             new_user_thrown_waste_path(current_user.id) %></li>
-            <li><%= link_to '我的垃圾量',
+            <li><%= link_to '平均垃圾量',
                             user_path(current_user.id) %></li>
-            <li><%= link_to '後記',
+            <li><%= link_to '垃圾 History',
                             user_thrown_wastes_path(current_user.id) %></li>
+            <li><%= link_to '後記', conclusion_index_path %></li>
             <% if current_user.is_admin %>
               <li><%= link_to 'Trashes Management', wastes_path %></li>
               <li><%= link_to 'User Management',
@@ -48,13 +49,14 @@
             <li class="divider"></li>
             <li><%= link_to '垃圾製造機',
                             new_user_thrown_waste_path(current_user.id) %></li>
-            <li><%= link_to '我的垃圾量',
+            <li><%= link_to '平均垃圾量',
                             user_path(current_user.id) %></li>
-            <li><%= link_to '後記',
+            <li><%= link_to '垃圾 History',
                             user_thrown_wastes_path(current_user.id) %></li>
+            <li><%= link_to '後記', conclusion_index_path %></li>
             <% if current_user.is_admin %>
               <li><%= link_to 'Trashes Management', wastes_path %></li>
-              <li><%= link_to 'User Ranking',
+              <li><%= link_to 'User Management',
                               users_path %></li>
             <% end %>
             <li><%= link_to '登出', '/logout' %></li>
