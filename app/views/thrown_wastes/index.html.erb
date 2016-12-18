@@ -2,10 +2,11 @@
 
 <div class="divider"></div>
 <div class="section">
+<% no_trash = true %>
 <% Waste.all.each do |waste| %>
   <% count = @user.thrown_wastes.where(waste_id: waste.id).count() %>
   <% if count != 0 %>
-
+    <% no_trash = false if no_trash == true %>
     <div class="col s12 m7">
       <div class="card horizontal">
         <div class="card-image">
@@ -29,6 +30,9 @@
 
   <% end #if %>
 <% end #do %>
+<% if no_trash %> <!-- if no trash were threw yet -->
+  <h5 class="center">No trash was thrown so far :)</h5>
+<% end %>
 </div>
 
 <script>
