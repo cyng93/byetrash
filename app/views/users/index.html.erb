@@ -1,6 +1,9 @@
 <div class="container">
   <h1>Ranking</h1>
 
+  <%= link_to 'reset all scores', reset_scores_path,
+              data: { confirm: 'Warning!!! All user score will be reset!' },
+              class: 'btn red' %>
   <table class="centered">
     <thead>
       <th>Score</th>

@@ -2,6 +2,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :require_login
 
+  def event_notification
+  if day_passed < 7
+    flash[:message] = "正常生活 Day #{day_passed}"
+  else
+    flash[:message] = "垃圾減量 Day #{day_passed - 7}"
+  end
+  end
+  helper_method :event_notification
+
   def day_passed
     start_date = "2016-12-14 00:00:00 +0800"
     day_passed = (DateTime.now - start_date.to_date).to_i + 1
@@ -22,9 +31,10 @@ class ApplicationController < ActionController::Base
 
   def is_admin
     if current_user
-      return @current_user.is_admin
-    else
-      return false
+      if !current_user.is_admin
+        flash[:message] = 'You have no permisison to do so...'
+        redirect_to root_path
+      end
     end
   end
   helper_method :is_admin

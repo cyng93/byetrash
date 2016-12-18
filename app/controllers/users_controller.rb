@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :is_admin
+  skip_before_action :is_admin, only: [:new, :create]
   skip_before_action :require_login, only: [:new, :create]
 
   def show
@@ -66,6 +68,16 @@ class UsersController < ApplicationController
       redirect_to users_path
     end
 
+  end
+
+  def reset_scores
+    @users = User.all
+    @users.all.each do |u|
+      u.update!( score_week1: 0,
+                 score_week2: 0)
+    end
+    flash[:message] = 'Scores reset!'
+    render 'index'
   end
 
 private

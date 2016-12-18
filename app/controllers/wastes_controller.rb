@@ -1,4 +1,6 @@
 class WastesController < ApplicationController
+  before_action :is_admin
+  skip_before_action :is_admin, only: [:new, :create]
 
   def index
     @wastes = Waste.all

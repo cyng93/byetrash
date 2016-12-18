@@ -22,5 +22,8 @@ Rails.application.routes.draw do
 
   get 'conclusion/index'
 
+  # reset all user's score
+  get 'reset_scores' => 'users#reset_scores'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

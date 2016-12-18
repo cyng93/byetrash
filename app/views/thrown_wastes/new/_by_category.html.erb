@@ -29,9 +29,6 @@
         <div class="card-content">
           <h5 class="header"><%= waste.name %></p>
         </div>
-        <div class="card-content">
-          <%= "<a href='#modal#{waste.id}'>See more...</a>".html_safe %>
-        </div>
         <div class="card-action">
           <%= "<a onclick=\"$('#new_thrownwaste#{waste.id}').submit()\">丟垃圾</a>".html_safe %>
         </div>
