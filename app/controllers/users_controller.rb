@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :is_admin
-  skip_before_action :is_admin, only: [:new, :create]
+  skip_before_action :is_admin, only: [:new, :create, :show]
   skip_before_action :require_login, only: [:new, :create]
 
   def show
@@ -73,6 +73,7 @@ class UsersController < ApplicationController
   def reset_scores
     @users = User.all
     @users.all.each do |u|
+      u.thrown_wastes.destroy_all
       u.update!( score_week1: 0,
                  score_week2: 0)
     end
