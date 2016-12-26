@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :require_login
 
   def event_notification
-  if day_passed < 7
+  if day_passed <= 7
     flash[:message] = "正常生活 Day #{day_passed}"
   else
     flash[:message] = "垃圾減量 Day #{day_passed - 7}"
@@ -12,8 +12,9 @@ class ApplicationController < ActionController::Base
   helper_method :event_notification
 
   def day_passed
-    start_date = "2016-12-14 00:00:00 +0800"
-    day_passed = (DateTime.now - start_date.to_date).to_i + 1
+    start_time = "2016-12-19 00:00:00 +0800".to_time
+    end_time = DateTime.current.in_time_zone('Taipei')
+    day_passed = ((end_time-start_time)/1.day).to_i + 1
   end
   helper_method :day_passed
 

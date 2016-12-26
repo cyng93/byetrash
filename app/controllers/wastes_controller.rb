@@ -96,6 +96,7 @@ private
   def waste_params
     params.require(:waste).permit(:name,
                                   :description,
+                                  :category,
                                   :image_name,
                                   :weight)
   end

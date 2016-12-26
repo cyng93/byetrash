@@ -6,7 +6,8 @@
               class: 'btn red' %>
   <table class="centered">
     <thead>
-      <th>Score</th>
+      <th>Week1</th>
+      <th>Week2</th>
       <th>Username</th>
       <th>existed for</th>
       <% if is_admin %>
@@ -17,7 +18,8 @@
     <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.score_week1+user.score_week2 %></td>
+        <td><%= user.score_week1 %></td>
+        <td><%= user.score_week2 %></td>
         <td><%= link_to user.username, user_path(user) %></td>
         <td><%= (DateTime.now - user.created_at.to_date).to_i %> days</td>
         <% if is_admin %>
